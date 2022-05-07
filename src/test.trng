@@ -1,0 +1,8 @@
+// Init the memory
+INIT 96
+// Start at the begining
+GOTO 0 MEM
+// Set the memory to the value of the register
+WRITE 1 1
+// Print our new value
+PRINT 1
