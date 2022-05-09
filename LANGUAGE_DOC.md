@@ -11,7 +11,7 @@
 - `SWITCH [x] (y)` - Similar to `WRITE` but switches the value from it's current position. (Unimplemented)
 - `{[x]}` - Replaces itself with the value at position x`. Example `{2} EQUALS {1}`. (Unimplemented)
 
-### Logic
+### Logic (uninplemented)
 
 `IF [x] [loc] (antiLoc)` - he current location will jump to the execution point `loc` if the value of `x` is `1`. If `x` is `0`, it will continue reading OR (if `antiLoc` is passed), jump to the execution point `antiLoc`.
 
@@ -44,7 +44,7 @@ IF {2} AND {1} 1
 - `BIT PRINT [x] (line)` - Prints the value at the line `line` at `x`, the default line is `MEM`. Output will be `0` or `1`.
 - `BIN PRINT [i] [o] (line)` - Similar to `BIT PRINT`, but does all the values from `i` to `o` (inclusive).
 - `NUM PRINT [i] [o] (line) (singed)` - Like `BIN PRINT` but instead prints it as a numerical value (so `1100` would be printed as `12`), but is `signed` is `1` (it is `0` by default), the first digit is used to determine if the number is negitave (first value being `1`). If `signed` is `1`, then `1100` would be `-4`.
-- `UTF PRINT [i] [o] (line)` - Like `BIN PRINT`, but with the UTF-8 standard [In later version of `turing`].
+- `UTF PRINT [i] [o] (line)` - Like `BIN PRINT`, but with the UTF-8 standard (Unimplemented).
 
 ## Comments
 
