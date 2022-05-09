@@ -3,6 +3,7 @@ use std::{
     fs::File,
     io::{prelude::*, BufReader},
     path::Path,
+    str,
 };
 
 use fancy_regex::Regex;
@@ -21,6 +22,10 @@ fn main() -> std::io::Result<()> {
     let goto_regex: Regex = Regex::new(r"(?<=GOTO )\d*").unwrap();
     let write_current_regex: Regex = Regex::new(r"(?<=WRITE )\d*").unwrap();
     let write_selected_regex: Regex = Regex::new(r"(?<=WRITE (0|1) )\d*").unwrap();
+
+    // Print regexes
+    let basic_print_regex = Regex::new(r"(?<=PRINT )\d*").unwrap();
+    let second_print_param = Regex::new(r"(?<=PRINT (0|1) ).*").unwrap();
     // To resize the vector see: https://stackoverflow.com/a/54887778
     let mut memory_line = vec![false; 8];
     let mut current_location: usize = 0;
@@ -89,7 +94,39 @@ fn main() -> std::io::Result<()> {
             memory_line[location] = value;
             continue;
         }
-        // TODO: Print to command line
+        // Print to command line
+        else if basic_print_regex.is_match(&line).unwrap() {
+            // Basic BIT print
+            if line.contains("BIT") {
+                let position_string = basic_print_regex.find(&line).unwrap().unwrap().as_str();
+                let position = position_string.parse::<usize>().unwrap();
+                println!("{}", memory_line[position] as usize);
+            }
+            // Basic BIN (binary) print
+            else if line.contains("BIN") {
+                let first_position_string =
+                    basic_print_regex.find(&line).unwrap().unwrap().as_str();
+                let first_position = first_position_string.parse::<usize>().unwrap();
+                let second_position_string =
+                    second_print_param.find(&line).unwrap().unwrap().as_str();
+                let second_position = second_position_string.parse::<usize>().unwrap();
+                for i in (first_position..(second_position + 1)).rev() {
+                    print!("{}", memory_line[i] as usize);
+                }
+                print!("\n");
+            } else if line.contains("NUM") {
+                let first_position_string =
+                    basic_print_regex.find(&line).unwrap().unwrap().as_str();
+                let first_position = first_position_string.parse::<usize>().unwrap();
+                let second_position_string =
+                    second_print_param.find(&line).unwrap().unwrap().as_str();
+                let second_position = second_position_string.parse::<usize>().unwrap();
+                let segment = &memory_line[first_position..(second_position + 1)];
+                println!("{}", binary_vector_to_int(segment.to_vec()));
+            }
+
+            continue;
+        }
         println!("Unhandled command: {}", line);
     }
 
@@ -102,4 +139,19 @@ fn lines_from_file(filename: impl AsRef<Path>) -> Vec<String> {
     buf.lines()
         .map(|l| l.expect("Could not parse line"))
         .collect()
+}
+
+fn binary_vector_to_int(vector: Vec<bool>) -> usize {
+    let mut result: usize = 0;
+    for i in 0..(vector.len()) {
+        result += usize::pow(2, i as u32) * bool_to_int(vector[i]);
+    }
+    return result;
+}
+fn bool_to_int(bool: bool) -> usize {
+    if bool {
+        1
+    } else {
+        0
+    }
 }
