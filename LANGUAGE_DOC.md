@@ -3,13 +3,14 @@
 - `INIT [x]` - Create the memory space with a size of `x`. Clears memory.
 - `GOTO [x]` - Sets the read position of the program's memory to location `x`.
 - `JUMP [x]` - Jump's to the execution point `x`.
-- `LOC [x]` - Set the line the command to the execution point number `x`. DO NOT use this is combination with other commands, it should be standalone. In addition, execution points must be declared first (so youo can't jump to `LOC` points later in the program)
+- `LOC [x]` - Set the line the command to the execution point number `x`. DO NOT use this is combination with other commands, it should be standalone. In addition, execution points must be declared first (so you can't jump to `LOC` points later in the program). **WARNING: You can only have 1,000 execution points in one program (but you can change where**
 - Move commands: `LEFT` and `PREV` go backwards, while `RIGHT` and `PREV` go forwards (to be added)
 - `WRITE [x] (y)` - Writes `x` to the current position. If `y` is specified, it will use `y` rather than the current position.
 - `LOGIWRITE ([x]) (y)` - Similar to `WRITE`, but evaluates the expression in `x` first, and then sets the value.
 
 - `SWITCH [x] (y)` - Similar to `WRITE` but switches the value from it's current position. (Unimplemented)
 - `{[x]}` - Replaces itself with the value at position x`. Example `{2} EQUALS {1}`. (Unimplemented)
+- `END` - Place at end of file, will end your program the moment it is seen
 
 ### Logic (uninplemented)
 
