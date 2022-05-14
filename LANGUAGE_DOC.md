@@ -16,6 +16,14 @@
 
 `IF [x] [loc] (antiLoc)` - he current location will jump to the execution point `loc` if the value of `x` is `1`. If `x` is `0`, it will continue reading OR (if `antiLoc` is passed), jump to the execution point `antiLoc`.
 
+- `WBOOL ([a] (c) [b]) [loc]` - Runs the opperation `b` on `a` (and if not `NOT` `c`). Writes the value of that to the location `loc`. For example:
+
+```
+WBOOL (12 OR 14) 5
+```
+
+When it comes to opperators, it is worth noting that `a` and `b` are both memory addresses, NOT binary values.
+
 - `[a] NOT` - The opposite of `a`, so `0` would give `1`, and `1` would give `0`.
 - `[a] EQUALS [b]` - Gives a `1` if `a` and `b` are the same value (either `0` or `1`), and a `0` otherwise.
 - `[a] AND [b]` - Gives a `1` if `a` and `b` are `1`, and a `0` otherwise.

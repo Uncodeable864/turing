@@ -24,6 +24,12 @@ fn main() {
     let write_current_regex: Regex = Regex::new(r"(?<=WRITE )\d*").unwrap();
     let write_selected_regex: Regex = Regex::new(r"(?<=WRITE (0|1) )\d*").unwrap();
 
+    // Booleans
+    let boolean_multiparam_second_param_regex: Regex =
+        Regex::new(r"(?<=OR |AND |EQUALS )\d*").unwrap();
+    let boolean_write_address_regex: Regex = Regex::new(r"(?<=\) )\d*").unwrap();
+    let boolean_first_param_regex: Regex = Regex::new(r"(?<=\()\d*").unwrap();
+
     // Print regexes
     let basic_print_regex = Regex::new(r"(?<=PRINT )\d*").unwrap();
     let second_print_param = Regex::new(r"(?<=PRINT (0|1) ).*").unwrap();
@@ -137,6 +143,59 @@ fn main() {
             let index_string = jump_regex.find(&line).unwrap().unwrap().as_str();
             let index = index_string.parse::<usize>().unwrap();
             current_line = jump_list[index];
+        } else if line.contains(&"WBOOL") {
+            if !line.contains(&"NOT") {
+                let param_one_string = boolean_first_param_regex
+                    .find(&line)
+                    .unwrap()
+                    .unwrap()
+                    .as_str();
+                let param_one = param_one_string.parse::<usize>().unwrap();
+                let first_value = memory_line[param_one];
+                let param_two_string = boolean_multiparam_second_param_regex
+                    .find(&line)
+                    .unwrap()
+                    .unwrap()
+                    .as_str();
+                let param_two = param_two_string.parse::<usize>().unwrap();
+                let second_value = memory_line[param_two];
+
+                let final_param_string = boolean_write_address_regex
+                    .find(&line)
+                    .unwrap()
+                    .unwrap()
+                    .as_str();
+                let final_param = final_param_string.parse::<usize>().unwrap();
+
+                if line.contains(&"OR") {
+                    let value = first_value || second_value;
+                    memory_line[final_param] = value;
+                } else if line.contains(&"AND") {
+                    let value = first_value && second_value;
+                    memory_line[final_param] = value;
+                } else if line.contains(&"EQUALS") {
+                    let value = first_value == second_value;
+                    memory_line[final_param] = value;
+                }
+            } else {
+                let param_one_string = boolean_first_param_regex
+                    .find(&line)
+                    .unwrap()
+                    .unwrap()
+                    .as_str();
+                let param_one = param_one_string.parse::<usize>().unwrap();
+                let first_value = memory_line[param_one];
+
+                let final_param_string = boolean_write_address_regex
+                    .find(&line)
+                    .unwrap()
+                    .unwrap()
+                    .as_str();
+                let final_param = final_param_string.parse::<usize>().unwrap();
+
+                let value = !first_value;
+                memory_line[final_param] = value;
+            }
         }
         // Add one to the current line
         current_line = current_line + 1;
