@@ -30,8 +30,17 @@
 1. Open Terminal
 2. Run the following command:
 
+```bash
+curl https://raw.githubusercontent.com/Uncodeable864/turing/main/install/apple_m1.sh | bash
 ```
 
+### macOS (Intel/x86-64)
+
+1. Open Terminal
+2. Run the following command:
+
+```bash
+curl https://raw.githubusercontent.com/Uncodeable864/turing/main/install/apple_intel.sh | bash
 ```
 
 ## File type
