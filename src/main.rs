@@ -23,6 +23,10 @@ fn main() {
     let jump_regex: Regex = Regex::new(r"(?<=JUMP )\d*").unwrap();
     let write_current_regex: Regex = Regex::new(r"(?<=WRITE )\d*").unwrap();
     let write_selected_regex: Regex = Regex::new(r"(?<=WRITE (0|1) )\d*").unwrap();
+    // If
+    let if_first_param_regex: Regex = Regex::new(r"(?<=IF )\d*").unwrap();
+    let if_second_param_regex: Regex = Regex::new(r"(?<=\d )\d*").unwrap();
+    let if_third_param_regex: Regex = Regex::new(r"\d+(?! )").unwrap();
 
     // Booleans
     let boolean_multiparam_second_param_regex: Regex =
@@ -195,6 +199,29 @@ fn main() {
 
                 let value = !first_value;
                 memory_line[final_param] = value;
+            }
+        } else if line.contains(&"IF") {
+            let memory_value_string = if_first_param_regex.find(&line).unwrap().unwrap().as_str();
+            let memory_value = memory_value_string.parse::<usize>().unwrap();
+            let byte = memory_line[memory_value];
+            if byte == true {
+                let jump_index_string =
+                    if_second_param_regex.find(&line).unwrap().unwrap().as_str();
+                let jump_index = jump_index_string.parse::<usize>().unwrap();
+                current_line = jump_list[jump_index];
+            } else if byte == false {
+                if if_third_param_regex.is_match(&line).unwrap() {
+                    let jump_index_string =
+                        if_third_param_regex.find(&line).unwrap().unwrap().as_str();
+                    let jump_index = jump_index_string.parse::<usize>().unwrap();
+
+                    current_line = jump_list[jump_index];
+                }
+            } else {
+                panic!(
+                    "The value of position {} in not a byte. This MAY be a problem with your code.",
+                    memory_value
+                );
             }
         }
 

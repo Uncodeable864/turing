@@ -1,4 +1,4 @@
-![Turing Complete Status](https://img.shields.io/badge/turing%20complete-mostly-yellow?style=for-the-badge)
+![Turing Complete Status](https://img.shields.io/badge/turing%20complete-complete-green?style=for-the-badge)
 
 ![Turing Logo](assets/turing_fully_transparent_white_logo.png)
 

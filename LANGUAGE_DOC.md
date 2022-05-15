@@ -14,7 +14,7 @@
 
 ### Logic (uninplemented)
 
-`IF [x] [loc] (antiLoc)` - he current location will jump to the execution point `loc` if the value of `x` is `1`. If `x` is `0`, it will continue reading OR (if `antiLoc` is passed), jump to the execution point `antiLoc`.
+`IF [x] [loc] [antiLoc]` - The current location will jump to the execution point `loc` if the value of `x` is `1`. If `x` is `0`, it will jump to the execution point `antiLoc`.
 
 - `WBOOL ([a] (c) [b]) [loc]` - Runs the opperation `b` on `a` (and if not `NOT` `c`). Writes the value of that to the location `loc`. For example:
 
@@ -33,7 +33,7 @@ To use memory points use the `{[x]}` in-line command.
 
 #### Logic example
 
-`IF {1} AND {2} 1 2`
+`IF 3 1 2`
 Explaination: Get the value at `1` and `2`, run `AND` on them. If the result is `1`, jump to execution point `1`, if the result is `0`, jump to execution point `2`.
 
 #### Nesting logic

@@ -1,14 +1,18 @@
 INIT 8
+
 WRITE 1 0
 WRITE 1 2
 
-WBOOL (2 AND 0) 1
+WBOOL (7 NOT) 3
 
-IF 1 1
+IF 3 1 2
+LOC 2
 BIT PRINT 7
 END
 
 LOC 1
 BIT PRINT 2
 END
+
+// Expected result: `1`
 
