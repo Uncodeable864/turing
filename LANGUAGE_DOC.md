@@ -9,10 +9,9 @@
 - `LOGIWRITE ([x]) (y)` - Similar to `WRITE`, but evaluates the expression in `x` first, and then sets the value.
 
 - `SWITCH [x] (y)` - Similar to `WRITE` but switches the value from it's current position. (Unimplemented)
-- `{[x]}` - Replaces itself with the value at position x`. Example `{2} EQUALS {1}`. (Unimplemented)
 - `END` - Place at end of file, will end your program the moment it is seen
 
-### Logic (uninplemented)
+### Logic
 
 `IF [x] [loc] [antiLoc]` - The current location will jump to the execution point `loc` if the value of `x` is `1`. If `x` is `0`, it will jump to the execution point `antiLoc`.
 
