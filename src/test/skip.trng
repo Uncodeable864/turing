@@ -1,0 +1,14 @@
+INIT 8
+
+WRITE 1 1
+
+JUMP 1
+
+BIT PRINT 0
+END
+
+LOC 1
+BIT PRINT 1
+END
+
+// Printing of a `1` mean it worked, a `0` means the pre-loction check failed

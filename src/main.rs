@@ -40,7 +40,18 @@ fn main() {
     let mut current_location: usize = 0;
     let mut current_line: usize = 0;
 
-    //BUG: `continue` statements do not let the add one to current_line statement run.
+    // Itterate over lines
+    for current_line in 0..lines.len() {
+        let line = lines[current_line].clone();
+
+        if loc_regex.is_match(&line).unwrap() {
+            let index_string = loc_regex.find(&line).unwrap().unwrap().as_str();
+            let index = index_string.parse::<usize>().unwrap();
+
+            jump_list[index] = current_line;
+        }
+    }
+
     // Loop through the lines
     loop {
         let line = lines[current_line].to_string();
@@ -127,17 +138,6 @@ fn main() {
                 println!("{}", binary_vector_to_int(segment.to_vec()));
             }
         }
-        // Location saving
-        else if loc_regex.is_match(&line).unwrap() {
-            let index_string = loc_regex.find(&line).unwrap().unwrap().as_str();
-            let index = index_string.parse::<usize>().unwrap();
-
-            // println!(
-            //     "Attempting to add a jump coordiante to index number {}, at itteration {}",
-            //     index, l
-            // );
-            jump_list[index] = current_line;
-        }
         // Jumping
         else if jump_regex.is_match(&line).unwrap() {
             let index_string = jump_regex.find(&line).unwrap().unwrap().as_str();
@@ -197,6 +197,10 @@ fn main() {
                 memory_line[final_param] = value;
             }
         }
+
+        // Uncomment for debugging
+        // println!("{}", line);
+
         // Add one to the current line
         current_line = current_line + 1;
     }
