@@ -4,7 +4,7 @@
 
 # Turing - A Simple Turing Machine
 
-Download the VS Code syntax highling extension [https://marketplace.visualstudio.com/items?itemName=Uncodeable864.turing-vscode-language-support](here)!
+Download the VS Code syntax highling extension [here](https://marketplace.visualstudio.com/items?itemName=Uncodeable864.turing-vscode-language-support)!
 
 > It's a [turing machine](https://en.wikipedia.org/wiki/Turing_machine)!
 
