@@ -36,18 +36,6 @@ To use memory points use the `{[x]}` in-line command.
 `IF 3 1 2`
 Explaination: Get the value at `1` and `2`, run `AND` on them. If the result is `1`, jump to execution point `1`, if the result is `0`, jump to execution point `2`.
 
-#### Nesting logic
-
-To nest login, simply set the value of a memory point, and use it in the `IF`.
-Example:
-
-```
-// Setting memory point
-LOGIWRITE 1 AND 0 2
-// If statment
-IF {2} AND {1} 1
-```
-
 ### Writing to the standard output
 
 - `BIT PRINT [x] (line)` - Prints the value at the line `line` at `x`, the default line is `MEM`. Output will be `0` or `1`.
