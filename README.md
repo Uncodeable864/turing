@@ -25,13 +25,14 @@
 1. Click "OK". Close out of the window.
 1. See the "Usage" section
 
-### macOS
+### macOS (Apple Silicon)
 
-1. Download the file from the [Releases](https://github.com/Uncodeable864/turing/releases). If you use Apple Silicon download `turing_apple_arm64`, otherwise download `turing_apple_x86_64_darwin`.
-1. Rename the file you download to `turing` (case-sensitive), no file extension
-1. Create a folder in your Desktop called `turing-src`. Move `turing` there.
-1. In your Terminal run: `sudo +x ~/Desktop/turing-src/turing`
-1. Next run: `echo `
+1. Open Terminal
+2. Run the following command:
+
+```
+
+```
 
 ## File type
 
