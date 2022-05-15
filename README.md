@@ -4,6 +4,8 @@
 
 # Turing - A Simple Turing Machine
 
+Download the VS Code syntax highling extension [https://marketplace.visualstudio.com/items?itemName=Uncodeable864.turing-vscode-language-support](here)!
+
 > It's a [turing machine](https://en.wikipedia.org/wiki/Turing_machine)!
 
 ## Installation
@@ -45,7 +47,7 @@ curl https://raw.githubusercontent.com/Uncodeable864/turing/main/install/apple_i
 
 ## File type
 
-`*.trng`, short for `turing`
+`*.trng` or `*.tng`, short for `turing`.
 
 ## Language design
 
