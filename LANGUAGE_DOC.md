@@ -6,9 +6,7 @@
 - `LOC [x]` - Set the line the command to the execution point number `x`. DO NOT use this is combination with other commands, it should be standalone. **WARNING: You can only have 1,000 execution points in one program (but you can change where**
 - Move commands: `LEFT` and `PREV` go backwards, while `RIGHT` and `PREV` go forwards (to be added)
 - `WRITE [x] (y)` - Writes `x` to the current position. If `y` is specified, it will use `y` rather than the current position.
-- `LOGIWRITE ([x]) (y)` - Similar to `WRITE`, but evaluates the expression in `x` first, and then sets the value.
-
-- `SWITCH [x] (y)` - Similar to `WRITE` but switches the value from it's current position. (Unimplemented)
+- `SWITCH [x] (y)` - Similar to `WRITE` but switches the value from it's current position. **(Use `NOT` and `WBOOL` instead)**
 - `END` - Place at end of file, will end your program the moment it is seen
 
 ### Logic
