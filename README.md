@@ -47,7 +47,7 @@ curl https://raw.githubusercontent.com/Uncodeable864/turing/main/install/apple_i
 
 ## File type
 
-`*.trng` or `*.tng`, short for `turing`.
+`*.trng` or `*.trg`, short for `turing`.
 
 ## Language design
 
