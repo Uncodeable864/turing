@@ -37,12 +37,19 @@ fn main() {
     // Print regexes
     let basic_print_regex = Regex::new(r"(?<=PRINT )\d*").unwrap();
     let second_print_param = Regex::new(r"(?<=PRINT (0|1) ).*").unwrap();
+
+    // Generic
+    let generic_int_param_regex = Regex::new(r"\d+").unwrap();
+
     // To resize the vector see: https://stackoverflow.com/a/54887778
     let mut jump_list = vec![0; 1000];
     let mut memory_line = vec![false; 8];
 
     let mut current_location: usize = 0;
     let mut current_line: usize = 0;
+
+    // Uncomment for debugging
+    // println!("{}", line);
 
     // Itterate over lines
     for current_line in 0..lines.len() {
@@ -223,6 +230,15 @@ fn main() {
                     memory_value
                 );
             }
+        } else if line.contains(&"SWITCH") {
+            let location_string = generic_int_param_regex
+                .find(&line)
+                .unwrap()
+                .unwrap()
+                .as_str();
+            let location = location_string.parse::<usize>().unwrap();
+            let value = memory_line[location];
+            memory_line[location] = !value;
         }
 
         // Uncomment for debugging

@@ -1,0 +1,6 @@
+INIT 1
+WRITE 1 0
+SWITCH 0
+BIT PRINT 0
+END
+// Expected output: `1`
