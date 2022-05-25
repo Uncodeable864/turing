@@ -36,7 +36,7 @@ fn main() {
 
     // Print regexes
     let basic_print_regex = Regex::new(r"(?<=PRINT )\d*").unwrap();
-    let second_print_param = Regex::new(r"(?<=PRINT (0|1) ).*").unwrap();
+    let second_print_param = Regex::new(r"(?<=\d ).*").unwrap();
 
     // Generic
     let generic_int_param_regex = Regex::new(r"\d+").unwrap();
