@@ -4,5 +4,6 @@ INIT 96
 GOTO 0 MEM
 // Set the memory to the value of the register
 WRITE 1 0
-BIT PRINT 0
+WRITE 1 1
+NUM PRINT 0 1
 END
