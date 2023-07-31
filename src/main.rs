@@ -1,17 +1,27 @@
+use colored::*;
+use fancy_regex::Regex;
 use std::{
     env,
     fs::File,
     io::{prelude::*, BufReader},
     path::Path,
+    process::exit,
 };
-
-use fancy_regex::Regex;
 
 fn main() {
     let args: Vec<String> = env::args().collect();
-    let file_name = &args[1];
 
-    println!("Program file: {:?}", file_name);
+    if args.len() < 2 {
+        print_ascii_art();
+
+        println!("{}", "Turing is a turing-complete programing language. It is designed to emulate a turing machine.".green().bold());
+        println!("{}", "Usage: turing <file>".italic());
+        exit(0);
+    }
+
+    let file_name = &args[1];
+    println!();
+    println!("{} {:?}", "Program file:".bright_blue().bold(), file_name);
 
     let lines: Vec<String> = lines_from_file(file_name);
 
@@ -250,11 +260,24 @@ fn main() {
 }
 
 fn lines_from_file(filename: impl AsRef<Path>) -> Vec<String> {
-    let file = File::open(filename).expect("no such file");
+    let file = match File::open(filename) {
+        Ok(file) => file,
+        Err(error) => {
+            red_error(format!("Problem opening the file: {}", error).as_str());
+            return Vec::new();
+        }
+    };
     let buf = BufReader::new(file);
     buf.lines()
         .map(|l| l.expect("Could not parse line"))
         .collect()
+}
+
+fn red_error(error: &str) {
+    println!();
+    println!("{}", error.red().bold());
+    println!();
+    exit(1);
 }
 
 fn binary_vector_to_int(vector: Vec<bool>) -> usize {
@@ -270,4 +293,40 @@ fn bool_to_int(bool: bool) -> usize {
     } else {
         0
     }
+}
+
+fn print_ascii_art() {
+    println!(
+        r".----------------.  .----------------.  .----------------.  .----------------.  .-----------------. .----------------. "
+    );
+    println!(
+        r"| .--------------. || .--------------. || .--------------. || .--------------. || .--------------. || .--------------. |"
+    );
+    println!(
+        r"| |  _________   | || | _____  _____ | || |  _______     | || |     _____    | || | ____  _____  | || |    ______    | |"
+    );
+    println!(
+        r"| | |  _   _  |  | || ||_   _||_   _|| || | |_   __ \    | || |    |_   _|   | || ||_   \|_   _| | || |  .' ___  |   | |"
+    );
+    println!(
+        r"| | |_/ | | \_|  | || |  | |    | |  | || |   | |__) |   | || |      | |     | || |  |   \ | |   | || | / .'   \_|   | |"
+    );
+    println!(
+        r"| |     | |      | || |  | '    ' |  | || |   |  __ /    | || |      | |     | || |  | |\ \| |   | || | | |    ____  | |"
+    );
+    println!(
+        r"| |    _| |_     | || |   \ `--' /   | || |  _| |  \ \_  | || |     _| |_    | || | _| |_\   |_  | || | \ `.___]  _| | |"
+    );
+    println!(
+        r"| |   |_____|    | || |    `.__.'    | || | |____| |___| | || |    |_____|   | || ||_____|\____| | || |  `._____.'   | |"
+    );
+    println!(
+        r"| |              | || |              | || |              | || |              | || |              | || |              | |"
+    );
+    println!(
+        r"| '--------------' || '--------------' || '--------------' || '--------------' || '--------------' || '--------------' |"
+    );
+    println!(
+        r"'----------------'  '----------------'  '----------------'  '----------------'  '----------------'  '----------------' "
+    );
 }
