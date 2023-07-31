@@ -1,6 +1,6 @@
 mkdir ~/src/turing
 cd ~/src/turing
-curl https://github.com/Uncodeable864/turing/releases/download/v1.1.1/turing_apple_x86_64_darwin -L -o turing
+curl https://github.com/Uncodeable864/turing/releases/download/v1.1.1.1/turing_apple_x86_64_darwin -L -o turing
 # echo  >> ~/.zshrc
 echo "export PATH=\"\$PATH:\$HOME/src/turing\"" >> ~/.zshrc
 echo "Your password is needed to install turing"
