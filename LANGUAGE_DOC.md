@@ -19,7 +19,7 @@
 WBOOL (12 OR 14) 5
 ```
 
-When it comes to opperators, it is worth noting that `a` and `b` are both memory addresses, NOT binary values.
+When it comes to operators, it is worth noting that `a` and `b` are both memory addresses, NOT binary values.
 
 - `[a] NOT` - The opposite of `a`, so `0` would give `1`, and `1` would give `0`.
 - `[a] EQUALS [b]` - Gives a `1` if `a` and `b` are the same value (either `0` or `1`), and a `0` otherwise.
